@@ -19,4 +19,4 @@ for guesses in range(7):
 if win:
     print("You win!")
 else:
-    print(f"You lose. The answer is {answer}.")d
+    print(f"You lose. The answer is {answer}.")
