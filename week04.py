@@ -1,5 +1,3 @@
-import random
-
 class Node:
     def __init__(self, data, link=None):
         self.data = data
@@ -33,20 +31,26 @@ class LinkedList:
             else:
                 current = current.link
         return f"{target}은(는) LinkedList 안에 존재하지 않습니다"
-
-
-# ll = LinkedList()
-# ll.append(8)
-# ll.append(10)
-# ll.append(-9)
-# print(ll)
-# print(ll.search(100))
-# print(ll.search(10))
-
+    def remove(self,target):
+        if self.head.data == target:
+            self.head = self.head.link
+            return
+        current = self.head
+        previous = None
+        while current:
+            if current.data == target:
+                previous.link = current.link
+                return
+            previous = current
+            current = current.link
 
 ll = LinkedList()
-for i in range(20):
-    j = random.randint(1,30)
-    ll.append(j)
-    print(j, end=" ")
+ll.append(8)
+ll.append(10)
+ll.append(-9)
+print(ll)
+print(ll.search(100))
 print(ll.search(10))
+ll.remove(8)
+print(ll)
+
