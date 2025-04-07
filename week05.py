@@ -1,27 +1,17 @@
-class Node:
-    def __init__(self,data):
-        self.data = data
-        self.link = None
+def check_parentheses(expression : str) -> bool:
+    stack = []
+    for latter in expression:
+        if latter == "(":
+            stack.append(latter)
+        if latter == ")":
+            if len(stack) == 0:
+                return False
+            else:
+                stack.pop()
+    return  len(stack) == 0
 
-class Stack:
-    def __init__(self):
-        self.top = None
-    def push(self,data):
-        node = Node(data)
-        if self.top is None:
-            self.top = node
-        else:
-            node.link = self.head
-            self.top = node
-    def pop(self):
-        if self.top is None:
-            #raise  IndexError("스텍이 비어있습니다")
-            return "Stack is Empty"
-        poped_node = self.top
-        self.top = self.top.link
-        return poped_node.data
 
-s1 = Stack()
-print(s1.pop())
-s1.push("자료구조")
-print(s1.pop())
+print(check_parentheses("(2+3)"))
+print(check_parentheses("(2+(3*9))"))
+print(check_parentheses("(2+(3*9)")) #스택에 소괄호가 하나 남아있어서 False
+print(check_parentheses(")2+(3*9)("))
