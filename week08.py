@@ -49,6 +49,23 @@ def search(nunber):
                 return False
                 break
             current = current.right
+
+def delete(node, value):
+    if node is None:
+        return None
+    if value < node.data:
+        node.left = delete(node.left,value)
+    elif value > node.data:
+        node.right = delete(node.right,value)
+    else:
+        # 삭제할 노드 발견
+        # 자식이 없는 left 노드거나 자식이 하나만 있는 경우
+        if node.left is None:
+            return node.right
+        elif node.right is None:
+            return node.left
+        # 자식이 2개인 경우
+    return node
 if __name__ == "__main__":
     numbers = [10, 15, 8, 3, 9]
     root = None
@@ -58,10 +75,14 @@ if __name__ == "__main__":
 
     print("BST 구성 완료")
     post_order(root)  # 3 9 8 15 10
-
-    find_number = int(input())
+    print("\n")
+    find_number = int(input("찾고자 하는 값 : "))
     tf = search(find_number)
     if(tf == False):
         print(f"{find_number}를 못찾았습니다")
     else:
         print(f"{find_number}를 찾았습니다")
+
+    del_number = int(input("제거할 값 : "))
+    root = delete(root,del_number)
+    post_order(root)
